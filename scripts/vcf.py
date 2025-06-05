@@ -69,7 +69,10 @@ def validate_criteria_json(criteria):
 
 if __name__ == "__main__":
 
-    with open("criteria.json", "r") as f:
+    jsonfile_name="criteria.json"
+    output_name="SAMPLE_mutect2.vcf"
+    
+    with open(jsonfile_name, "r") as f:
         criteria_json = json.load(f)
         validate_criteria_json(criteria_json)
        
@@ -86,7 +89,7 @@ if __name__ == "__main__":
             #print(criteria_list)
             
     vcf = pysam.VariantFile("SAMPLE_mutect2_raw.vcf", "r")
-    vcf_out = pysam.VariantFile("SAMPLE_mutect2.vcf", "w", header=vcf.header)
+    vcf_out = pysam.VariantFile(output_name, "w", header=vcf.header)
     
     for record in vcf.fetch():
         if variant_passes(record, criteria_list):
