@@ -1,1 +1,1 @@
-# -vcf-filter
+# vcf-filter
